@@ -1,0 +1,534 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> query
+Rule 1     query -> create_database SEMICOLON
+Rule 2     query -> create_table SEMICOLON
+Rule 3     query -> insert SEMICOLON
+Rule 4     query -> delete SEMICOLON
+Rule 5     query -> update SEMICOLON
+Rule 6     create_database -> CREATE_DATABASE IDENTIFIER
+Rule 7     create_table -> CREATE_TABLE IDENTIFIER LPAREN columns RPAREN
+Rule 8     columns -> column_def COMMA columns
+Rule 9     columns -> column_def
+Rule 10    column_def -> IDENTIFIER DATA_TYPE
+Rule 11    insert -> INSERT IDENTIFIER LPAREN identifiers RPAREN VALUES LPAREN values RPAREN
+Rule 12    identifiers -> IDENTIFIER COMMA identifiers
+Rule 13    identifiers -> IDENTIFIER
+Rule 14    values -> value COMMA values
+Rule 15    values -> value
+Rule 16    value -> INTEGER
+Rule 17    value -> STRING
+Rule 18    delete -> DELETE IDENTIFIER WHERE IDENTIFIER EQUAL value
+Rule 19    update -> UPDATE IDENTIFIER SET IDENTIFIER EQUAL value WHERE IDENTIFIER EQUAL value
+
+Terminals, with rules where they appear
+
+COMMA                : 8 12 14
+CREATE_DATABASE      : 6
+CREATE_TABLE         : 7
+DATA_TYPE            : 10
+DELETE               : 18
+EQUAL                : 18 19 19
+IDENTIFIER           : 6 7 10 11 12 13 18 18 19 19 19
+INSERT               : 11
+INTEGER              : 16
+LPAREN               : 7 11 11
+RPAREN               : 7 11 11
+SEMICOLON            : 1 2 3 4 5
+SET                  : 19
+STRING               : 17
+UPDATE               : 19
+VALUES               : 11
+WHERE                : 18 19
+error                : 
+
+Nonterminals, with rules where they appear
+
+column_def           : 8 9
+columns              : 7 8
+create_database      : 1
+create_table         : 2
+delete               : 4
+identifiers          : 11 12
+insert               : 3
+query                : 0
+update               : 5
+value                : 14 15 18 19 19
+values               : 11 14
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . query
+    (1) query -> . create_database SEMICOLON
+    (2) query -> . create_table SEMICOLON
+    (3) query -> . insert SEMICOLON
+    (4) query -> . delete SEMICOLON
+    (5) query -> . update SEMICOLON
+    (6) create_database -> . CREATE_DATABASE IDENTIFIER
+    (7) create_table -> . CREATE_TABLE IDENTIFIER LPAREN columns RPAREN
+    (11) insert -> . INSERT IDENTIFIER LPAREN identifiers RPAREN VALUES LPAREN values RPAREN
+    (18) delete -> . DELETE IDENTIFIER WHERE IDENTIFIER EQUAL value
+    (19) update -> . UPDATE IDENTIFIER SET IDENTIFIER EQUAL value WHERE IDENTIFIER EQUAL value
+
+    CREATE_DATABASE shift and go to state 7
+    CREATE_TABLE    shift and go to state 8
+    INSERT          shift and go to state 9
+    DELETE          shift and go to state 10
+    UPDATE          shift and go to state 11
+
+    query                          shift and go to state 1
+    create_database                shift and go to state 2
+    create_table                   shift and go to state 3
+    insert                         shift and go to state 4
+    delete                         shift and go to state 5
+    update                         shift and go to state 6
+
+state 1
+
+    (0) S' -> query .
+
+
+
+state 2
+
+    (1) query -> create_database . SEMICOLON
+
+    SEMICOLON       shift and go to state 12
+
+
+state 3
+
+    (2) query -> create_table . SEMICOLON
+
+    SEMICOLON       shift and go to state 13
+
+
+state 4
+
+    (3) query -> insert . SEMICOLON
+
+    SEMICOLON       shift and go to state 14
+
+
+state 5
+
+    (4) query -> delete . SEMICOLON
+
+    SEMICOLON       shift and go to state 15
+
+
+state 6
+
+    (5) query -> update . SEMICOLON
+
+    SEMICOLON       shift and go to state 16
+
+
+state 7
+
+    (6) create_database -> CREATE_DATABASE . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 17
+
+
+state 8
+
+    (7) create_table -> CREATE_TABLE . IDENTIFIER LPAREN columns RPAREN
+
+    IDENTIFIER      shift and go to state 18
+
+
+state 9
+
+    (11) insert -> INSERT . IDENTIFIER LPAREN identifiers RPAREN VALUES LPAREN values RPAREN
+
+    IDENTIFIER      shift and go to state 19
+
+
+state 10
+
+    (18) delete -> DELETE . IDENTIFIER WHERE IDENTIFIER EQUAL value
+
+    IDENTIFIER      shift and go to state 20
+
+
+state 11
+
+    (19) update -> UPDATE . IDENTIFIER SET IDENTIFIER EQUAL value WHERE IDENTIFIER EQUAL value
+
+    IDENTIFIER      shift and go to state 21
+
+
+state 12
+
+    (1) query -> create_database SEMICOLON .
+
+    $end            reduce using rule 1 (query -> create_database SEMICOLON .)
+
+
+state 13
+
+    (2) query -> create_table SEMICOLON .
+
+    $end            reduce using rule 2 (query -> create_table SEMICOLON .)
+
+
+state 14
+
+    (3) query -> insert SEMICOLON .
+
+    $end            reduce using rule 3 (query -> insert SEMICOLON .)
+
+
+state 15
+
+    (4) query -> delete SEMICOLON .
+
+    $end            reduce using rule 4 (query -> delete SEMICOLON .)
+
+
+state 16
+
+    (5) query -> update SEMICOLON .
+
+    $end            reduce using rule 5 (query -> update SEMICOLON .)
+
+
+state 17
+
+    (6) create_database -> CREATE_DATABASE IDENTIFIER .
+
+    SEMICOLON       reduce using rule 6 (create_database -> CREATE_DATABASE IDENTIFIER .)
+
+
+state 18
+
+    (7) create_table -> CREATE_TABLE IDENTIFIER . LPAREN columns RPAREN
+
+    LPAREN          shift and go to state 22
+
+
+state 19
+
+    (11) insert -> INSERT IDENTIFIER . LPAREN identifiers RPAREN VALUES LPAREN values RPAREN
+
+    LPAREN          shift and go to state 23
+
+
+state 20
+
+    (18) delete -> DELETE IDENTIFIER . WHERE IDENTIFIER EQUAL value
+
+    WHERE           shift and go to state 24
+
+
+state 21
+
+    (19) update -> UPDATE IDENTIFIER . SET IDENTIFIER EQUAL value WHERE IDENTIFIER EQUAL value
+
+    SET             shift and go to state 25
+
+
+state 22
+
+    (7) create_table -> CREATE_TABLE IDENTIFIER LPAREN . columns RPAREN
+    (8) columns -> . column_def COMMA columns
+    (9) columns -> . column_def
+    (10) column_def -> . IDENTIFIER DATA_TYPE
+
+    IDENTIFIER      shift and go to state 26
+
+    columns                        shift and go to state 27
+    column_def                     shift and go to state 28
+
+state 23
+
+    (11) insert -> INSERT IDENTIFIER LPAREN . identifiers RPAREN VALUES LPAREN values RPAREN
+    (12) identifiers -> . IDENTIFIER COMMA identifiers
+    (13) identifiers -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 29
+
+    identifiers                    shift and go to state 30
+
+state 24
+
+    (18) delete -> DELETE IDENTIFIER WHERE . IDENTIFIER EQUAL value
+
+    IDENTIFIER      shift and go to state 31
+
+
+state 25
+
+    (19) update -> UPDATE IDENTIFIER SET . IDENTIFIER EQUAL value WHERE IDENTIFIER EQUAL value
+
+    IDENTIFIER      shift and go to state 32
+
+
+state 26
+
+    (10) column_def -> IDENTIFIER . DATA_TYPE
+
+    DATA_TYPE       shift and go to state 33
+
+
+state 27
+
+    (7) create_table -> CREATE_TABLE IDENTIFIER LPAREN columns . RPAREN
+
+    RPAREN          shift and go to state 34
+
+
+state 28
+
+    (8) columns -> column_def . COMMA columns
+    (9) columns -> column_def .
+
+    COMMA           shift and go to state 35
+    RPAREN          reduce using rule 9 (columns -> column_def .)
+
+
+state 29
+
+    (12) identifiers -> IDENTIFIER . COMMA identifiers
+    (13) identifiers -> IDENTIFIER .
+
+    COMMA           shift and go to state 36
+    RPAREN          reduce using rule 13 (identifiers -> IDENTIFIER .)
+
+
+state 30
+
+    (11) insert -> INSERT IDENTIFIER LPAREN identifiers . RPAREN VALUES LPAREN values RPAREN
+
+    RPAREN          shift and go to state 37
+
+
+state 31
+
+    (18) delete -> DELETE IDENTIFIER WHERE IDENTIFIER . EQUAL value
+
+    EQUAL           shift and go to state 38
+
+
+state 32
+
+    (19) update -> UPDATE IDENTIFIER SET IDENTIFIER . EQUAL value WHERE IDENTIFIER EQUAL value
+
+    EQUAL           shift and go to state 39
+
+
+state 33
+
+    (10) column_def -> IDENTIFIER DATA_TYPE .
+
+    COMMA           reduce using rule 10 (column_def -> IDENTIFIER DATA_TYPE .)
+    RPAREN          reduce using rule 10 (column_def -> IDENTIFIER DATA_TYPE .)
+
+
+state 34
+
+    (7) create_table -> CREATE_TABLE IDENTIFIER LPAREN columns RPAREN .
+
+    SEMICOLON       reduce using rule 7 (create_table -> CREATE_TABLE IDENTIFIER LPAREN columns RPAREN .)
+
+
+state 35
+
+    (8) columns -> column_def COMMA . columns
+    (8) columns -> . column_def COMMA columns
+    (9) columns -> . column_def
+    (10) column_def -> . IDENTIFIER DATA_TYPE
+
+    IDENTIFIER      shift and go to state 26
+
+    column_def                     shift and go to state 28
+    columns                        shift and go to state 40
+
+state 36
+
+    (12) identifiers -> IDENTIFIER COMMA . identifiers
+    (12) identifiers -> . IDENTIFIER COMMA identifiers
+    (13) identifiers -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 29
+
+    identifiers                    shift and go to state 41
+
+state 37
+
+    (11) insert -> INSERT IDENTIFIER LPAREN identifiers RPAREN . VALUES LPAREN values RPAREN
+
+    VALUES          shift and go to state 42
+
+
+state 38
+
+    (18) delete -> DELETE IDENTIFIER WHERE IDENTIFIER EQUAL . value
+    (16) value -> . INTEGER
+    (17) value -> . STRING
+
+    INTEGER         shift and go to state 44
+    STRING          shift and go to state 45
+
+    value                          shift and go to state 43
+
+state 39
+
+    (19) update -> UPDATE IDENTIFIER SET IDENTIFIER EQUAL . value WHERE IDENTIFIER EQUAL value
+    (16) value -> . INTEGER
+    (17) value -> . STRING
+
+    INTEGER         shift and go to state 44
+    STRING          shift and go to state 45
+
+    value                          shift and go to state 46
+
+state 40
+
+    (8) columns -> column_def COMMA columns .
+
+    RPAREN          reduce using rule 8 (columns -> column_def COMMA columns .)
+
+
+state 41
+
+    (12) identifiers -> IDENTIFIER COMMA identifiers .
+
+    RPAREN          reduce using rule 12 (identifiers -> IDENTIFIER COMMA identifiers .)
+
+
+state 42
+
+    (11) insert -> INSERT IDENTIFIER LPAREN identifiers RPAREN VALUES . LPAREN values RPAREN
+
+    LPAREN          shift and go to state 47
+
+
+state 43
+
+    (18) delete -> DELETE IDENTIFIER WHERE IDENTIFIER EQUAL value .
+
+    SEMICOLON       reduce using rule 18 (delete -> DELETE IDENTIFIER WHERE IDENTIFIER EQUAL value .)
+
+
+state 44
+
+    (16) value -> INTEGER .
+
+    SEMICOLON       reduce using rule 16 (value -> INTEGER .)
+    WHERE           reduce using rule 16 (value -> INTEGER .)
+    COMMA           reduce using rule 16 (value -> INTEGER .)
+    RPAREN          reduce using rule 16 (value -> INTEGER .)
+
+
+state 45
+
+    (17) value -> STRING .
+
+    SEMICOLON       reduce using rule 17 (value -> STRING .)
+    WHERE           reduce using rule 17 (value -> STRING .)
+    COMMA           reduce using rule 17 (value -> STRING .)
+    RPAREN          reduce using rule 17 (value -> STRING .)
+
+
+state 46
+
+    (19) update -> UPDATE IDENTIFIER SET IDENTIFIER EQUAL value . WHERE IDENTIFIER EQUAL value
+
+    WHERE           shift and go to state 48
+
+
+state 47
+
+    (11) insert -> INSERT IDENTIFIER LPAREN identifiers RPAREN VALUES LPAREN . values RPAREN
+    (14) values -> . value COMMA values
+    (15) values -> . value
+    (16) value -> . INTEGER
+    (17) value -> . STRING
+
+    INTEGER         shift and go to state 44
+    STRING          shift and go to state 45
+
+    values                         shift and go to state 49
+    value                          shift and go to state 50
+
+state 48
+
+    (19) update -> UPDATE IDENTIFIER SET IDENTIFIER EQUAL value WHERE . IDENTIFIER EQUAL value
+
+    IDENTIFIER      shift and go to state 51
+
+
+state 49
+
+    (11) insert -> INSERT IDENTIFIER LPAREN identifiers RPAREN VALUES LPAREN values . RPAREN
+
+    RPAREN          shift and go to state 52
+
+
+state 50
+
+    (14) values -> value . COMMA values
+    (15) values -> value .
+
+    COMMA           shift and go to state 53
+    RPAREN          reduce using rule 15 (values -> value .)
+
+
+state 51
+
+    (19) update -> UPDATE IDENTIFIER SET IDENTIFIER EQUAL value WHERE IDENTIFIER . EQUAL value
+
+    EQUAL           shift and go to state 54
+
+
+state 52
+
+    (11) insert -> INSERT IDENTIFIER LPAREN identifiers RPAREN VALUES LPAREN values RPAREN .
+
+    SEMICOLON       reduce using rule 11 (insert -> INSERT IDENTIFIER LPAREN identifiers RPAREN VALUES LPAREN values RPAREN .)
+
+
+state 53
+
+    (14) values -> value COMMA . values
+    (14) values -> . value COMMA values
+    (15) values -> . value
+    (16) value -> . INTEGER
+    (17) value -> . STRING
+
+    INTEGER         shift and go to state 44
+    STRING          shift and go to state 45
+
+    value                          shift and go to state 50
+    values                         shift and go to state 55
+
+state 54
+
+    (19) update -> UPDATE IDENTIFIER SET IDENTIFIER EQUAL value WHERE IDENTIFIER EQUAL . value
+    (16) value -> . INTEGER
+    (17) value -> . STRING
+
+    INTEGER         shift and go to state 44
+    STRING          shift and go to state 45
+
+    value                          shift and go to state 56
+
+state 55
+
+    (14) values -> value COMMA values .
+
+    RPAREN          reduce using rule 14 (values -> value COMMA values .)
+
+
+state 56
+
+    (19) update -> UPDATE IDENTIFIER SET IDENTIFIER EQUAL value WHERE IDENTIFIER EQUAL value .
+
+    SEMICOLON       reduce using rule 19 (update -> UPDATE IDENTIFIER SET IDENTIFIER EQUAL value WHERE IDENTIFIER EQUAL value .)
+
