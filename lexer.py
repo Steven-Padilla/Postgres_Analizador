@@ -113,3 +113,17 @@ lexer = lex.lex()
 #     if not tok:
 #         break  # No hay más tokens
 #     print(f"lexico: {tok.type, tok.value}")
+
+def execute(input):
+    array = []
+    lexer.input(input)
+    i=0
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No hay más tokens
+        # print(f"lexico: {tok.type, tok.value}")
+        value=tok.type, tok.value
+        array.append(value)
+    return array
+
